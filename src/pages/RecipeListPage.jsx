@@ -9,13 +9,15 @@ export const RecipeListPage = ({ setRecipe }) => {
   const [selectedRecipeList, setSelectedRecipeList] = useState(data.hits);
 
   const handleChange = (event) => {
-    const matchedRecepts = data.hits.filter((recept) => {
-      return recept.label
+    const matchedRecepts = data.hits.filter(({ recipe }) => {
+      return recipe.label
         .toLowerCase()
         .includes(event.target.value.toLowerCase());
     });
 
     console.log("matchedRecepts:", matchedRecepts);
+
+    setSelectedRecipeList(matchedRecepts);
   };
 
   return (
