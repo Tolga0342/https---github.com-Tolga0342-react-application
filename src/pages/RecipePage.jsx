@@ -13,6 +13,7 @@ import {
   SimpleGrid,
   Wrap,
   Badge,
+  WrapItem,
 } from "@chakra-ui/react";
 
 export const RecipePage = ({ recipe, clickFn }) => {
@@ -29,18 +30,18 @@ export const RecipePage = ({ recipe, clickFn }) => {
       w="100%"
       flexDir="row"
       flexWrap="wrap"
-      backgroundColor={"blue.100"}
+      backgroundColor="blue.100"
     >
-      <Card borderRadius="xl" w="2xl" h="75rem" backgroundColor={"white"}>
+      <Card borderRadius="xl" w="2xl" h="fit-content" backgroundColor="white">
+        <Image
+          src={recipe.image}
+          alt="Image"
+          height={["15em", "25em"]}
+          width="full"
+          borderTopRadius="xl"
+          mb={5}
+        />
         <CardBody>
-          <Image
-            src={recipe.image}
-            alt="Image"
-            height="25em"
-            width="2xl"
-            borderRadius="xl"
-            mb={5}
-          />
           <SimpleGrid columns={2}>
             <Box w="100%">
               <Text color="gray.500" mb={2}>
@@ -68,7 +69,7 @@ export const RecipePage = ({ recipe, clickFn }) => {
               </Stack>
             </Box>
 
-            <Box w="100%">
+            <Box w={["60%", "100%"]}>
               <Text mb={1}>Health labels:</Text>
               <Wrap mb={5}>
                 {recipe.healthLabels.map((label) => (
@@ -96,45 +97,45 @@ export const RecipePage = ({ recipe, clickFn }) => {
               <Text mb={1} fontSize="md" as="b">
                 Total nutrients:
               </Text>
-              <Flex wrap="wrap">
-                <Box m={3}>
+              <Flex flexDir={["column", "row"]} wrap="wrap">
+                <Box m={[1, 3]}>
                   <Text>
-                    {afgerondKcal}
+                    {afgerondKcal + " "}
                     {recipe.totalNutrients.ENERC_KCAL.unit}
                   </Text>
                   <Text> {recipe.totalNutrients.ENERC_KCAL.label}</Text>
                 </Box>
-                <Box m={3}>
+                <Box m={[1, 3]}>
                   <Text>
-                    {afgerondProtein}
+                    {afgerondProtein + " "}
                     {recipe.totalNutrients.PROCNT.unit}
                   </Text>
                   <Text> {recipe.totalNutrients.PROCNT.label}</Text>
                 </Box>
-                <Box m={3}>
+                <Box m={[1, 3]}>
                   <Text>
-                    {afgerondFat}
+                    {afgerondFat + " "}
                     {recipe.totalNutrients.FAT.unit}
                   </Text>
                   <Text> {recipe.totalNutrients.FAT.label} </Text>
                 </Box>
-                <Box m={3}>
+                <Box m={[1, 3]}>
                   <Text>
-                    {afgerondChocDf}
+                    {afgerondChocDf + " "}
                     {recipe.totalNutrients.CHOCDF.unit}
                   </Text>
                   <Text> {recipe.totalNutrients.CHOCDF.label}</Text>
                 </Box>
-                <Box m={3}>
+                <Box m={[1, 3]}>
                   <Text>
-                    {afgerondChole}
+                    {afgerondChole + " "}
                     {recipe.totalNutrients.CHOLE.unit}
                   </Text>
                   <Text> {recipe.totalNutrients.CHOLE.label}</Text>
                 </Box>
-                <Box m={3}>
+                <Box m={[1, 3]}>
                   <Text>
-                    {afgerondNa}
+                    {afgerondNa + " "}
                     {recipe.totalNutrients.NA.unit}
                   </Text>
                   <Text> {recipe.totalNutrients.NA.label}</Text>
@@ -142,10 +143,14 @@ export const RecipePage = ({ recipe, clickFn }) => {
               </Flex>
             </Box>
           </SimpleGrid>
-          <Center mt={10}>
+          <Flex
+            mt={10}
+            alignItems={["flex-start", "center"]}
+            justifyContent={["flex-start", "center"]}
+          >
             <CardFooter>
               <Button
-                size="lg"
+                size={["md", "lg"]}
                 colorScheme="green"
                 variant="solid"
                 onClick={() => clickFn()}
@@ -153,7 +158,7 @@ export const RecipePage = ({ recipe, clickFn }) => {
                 change selection
               </Button>
             </CardFooter>
-          </Center>
+          </Flex>
         </CardBody>
       </Card>
     </Center>

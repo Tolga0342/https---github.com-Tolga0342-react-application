@@ -1,11 +1,11 @@
-import { Center, Grid } from "@chakra-ui/react";
+import { Heading, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { data } from "../utils/data";
-import { RecipeItem } from "../components/ui/RecipeItem";
 import { TextInput } from "../components/ui/TextInput";
 import { RecipesList } from "../components/RecipesList";
 
 export const RecipeListPage = ({ setRecipe }) => {
+  const greeting = "Welcome to our app!";
   const [selectedRecipeList, setSelectedRecipeList] = useState(data.hits);
 
   const handleChange = (event) => {
@@ -14,17 +14,22 @@ export const RecipeListPage = ({ setRecipe }) => {
         .toLowerCase()
         .includes(event.target.value.toLowerCase());
     });
-
-    console.log("matchedRecepts:", matchedRecepts);
-
     setSelectedRecipeList(matchedRecepts);
   };
 
   return (
-    <>
-      <TextInput placeholder="tekst" onChange={handleChange} />
+    <Box backgroundColor="blue.100">
+      <Heading
+        padding={15}
+        mb={5}
+        textAlign="center"
+        backgroundColor="blue.100"
+      >
+        {greeting}
+      </Heading>
+      <TextInput placeholder="fill in your recipe" onChange={handleChange} />
 
       <RecipesList setRecipe={setRecipe} recipes={selectedRecipeList} />
-    </>
+    </Box>
   );
 };
